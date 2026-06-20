@@ -263,11 +263,31 @@ color:white;
 color:white;
 }
 
-.countdown{
-font-size:70px;
-font-weight:bold;
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
 }
 
+.time-box {
+    text-align: center;
+}
+
+.time-box span {
+    display: block;
+    font-size: 70px;
+    font-weight: 700;
+    color: white;
+}
+
+.time-box p {
+    margin-top: 8px;
+    font-size: 25px;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1px;
+}
 .owners h1{
 font-family: 'Great Vibes', cursive;
 font-size:80px;

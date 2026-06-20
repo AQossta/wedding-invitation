@@ -30,7 +30,8 @@ document.querySelectorAll('input[name="status"]').forEach(radio => {
     });
 });
 
-// === 3. ТАЙМЕР ОБРАТНОГО ОТСЧЕТА ===
+// === ТАЙМЕР ОБРАТНОГО ОТСЧЕТА ===
+
 const weddingDate = new Date("2026-08-15T19:00:00");
 
 function updateTimer() {
@@ -38,25 +39,33 @@ function updateTimer() {
     const diff = weddingDate - now;
 
     if (diff <= 0) {
-        document.getElementById("countdown").innerHTML = "00 : 00 : 00 : 00";
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
         return;
     }
 
-    const days = Math.floor(diff / 1000 / 60 / 60 / 24);
-    const hours = Math.floor((diff / 1000 / 60 / 60) % 24);
-    const minutes = Math.floor((diff / 1000 / 60) % 60);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
 
-    const fD = days < 10 ? '0' + days : days;
-    const fH = hours < 10 ? '0' + hours : hours;
-    const fM = minutes < 10 ? '0' + minutes : minutes;
-    const fS = seconds < 10 ? '0' + seconds : seconds;
+    document.getElementById("days").textContent =
+        days < 10 ? "0" + days : days;
 
-    document.getElementById("countdown").innerHTML = `${fD} : ${fH} : ${fM} : ${fS}`;
+    document.getElementById("hours").textContent =
+        hours < 10 ? "0" + hours : hours;
+
+    document.getElementById("minutes").textContent =
+        minutes < 10 ? "0" + minutes : minutes;
+
+    document.getElementById("seconds").textContent =
+        seconds < 10 ? "0" + seconds : seconds;
 }
 
-setInterval(updateTimer, 1000);
 updateTimer();
+setInterval(updateTimer, 1000);
 
 // === 4. ОТПРАВКА ДАННЫХ В GOOGLE ТАБЛИЦУ (БЕЗ CORS ОШИБОК) ===
 document.getElementById("guestForm").addEventListener("submit", async e => {
