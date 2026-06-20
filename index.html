@@ -1,226 +1,137 @@
 <!DOCTYPE html>
 <html lang="kk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
 
-<title>Wedding Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Lobster&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
-<section class="hero">
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/dcjcladjx/video/upload/v1781935424/intro_qvag2f.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Kanzhar</h1>
+            <div class="amp">&&amp;</div>
+            <h1>Laura</h1>
+            <button id="musicBtn">▶ Музыканы қосу</button>
+        </div>
+    </section>
 
-    <video class="hero-video" autoplay muted loop playsinline>
-        <source src="https://res.cloudinary.com/dcjcladjx/video/upload/v1781935424/intro_qvag2f.mp4" type="video/mp4">
-    </video>
+    <section class="invite">
+        <h2>Құрметті</h2>
+        <p>
+            АҒАЙЫН-ТУЫС, БАУЫРЛАР,<br>
+            ҚҰДА-ЖЕКЖАТ, НАҒАШЫ-ЖИЕН,<br>
+            БӨЛЕЛЕР, ДОС-ЖАРАН,<br>
+            КӨРШІЛЕР МЕН ӘРІПТЕСТЕР!
+        </p>
+    </section>
 
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-
-        <h1>Kanzhar</h1>
-
-        <div class="amp">&</div>
-
-        <h1>Laura</h1>
-
-        <button id="musicBtn">
-            ▶ Музыканы қосу
-        </button>
-
+    <div class="divider">
+        <img src="assets/flowers.png" alt="">
     </div>
 
-</section>
+    <section class="invite-two">
+        <p>СІЗ(ДЕР)ДІ БАЛАЛАРЫМЫЗ</p>
+        <h3>ҚАНЖАР МЕН ЛАУРАНЫҢ</h3>
+        <p>
+            ҮЙЛЕНУ ТОЙЫНА <br>
+            АРНАЛҒАН САЛТАНАТТЫ <br>
+            АҚ ДАСТАРХАНЫМЫЗДЫҢ <br>
+            ҚАДІРЛІ ҚОНАҒЫ БОЛУҒА <br>
+            ШАҚЫРАМЫЗ!
+        </p>
+    </section>
 
-<section class="invite">
-
-    <h2>Құрметті</h2>
-
-    <p>
-        АҒАЙЫН-ТУЫС, БАУЫРЛАР,<br>
-        ҚҰДА-ЖЕКЖАТ, НАҒАШЫ-ЖИЕН,<br>
-        БӨЛЕЛЕР, ДОС-ЖАРАН,<br>
-        КӨРШІЛЕР МЕН ӘРІПТЕСТЕР!
-    </p>
-</section>
-
-<div class="divider">
-    <img src="assets/flowers.png" alt="">
-</div>
-
-<section class="invite-two">
-    <p>
-        СІЗ(ДЕР)ДІ БАЛАЛАРЫМЫЗ
-    </p>
-
-    <h3>ҚАНЖАР МЕН ЛАУРАНЫҢ</h3>
-
-    <p>
-        ҮЙЛЕНУ ТОЙЫНА <br>
-        АРНАЛҒАН САЛТАНАТТЫ <br>
-        АҚ ДАСТАРХАНЫМЫЗДЫҢ <br>
-        ҚАДІРЛІ ҚОНАҒЫ БОЛУҒА <br>
-        ШАҚЫРАМЫЗ!
-    </p>
-
-</section>
-
-<div class="divider">
-    <img src="assets/flowers.png" alt="">
-</div>
-
-<section class="date-section">
-
-    <h2>Тойымыз</h2>
-
-    <div class="date-card">
-
-        <div>ЖҰМА</div>
-
-        <div class="day">14</div>
-
-        <div>2026</div>
-
+    <div class="divider">
+        <img src="assets/flowers.png" alt="">
     </div>
 
-    <h3>19:00</h3>
-
-</section>
-
-<section class="location">
-
-    <h2>Мекен-жайымыз</h2>
-
-    <h3>Ақтөбе қаласы</h3>
-
-    <h1>«Қуаныш»</h1>
-
-    <h3>мейрамханасы</h3>
-
-    <a
-       class="map-btn"
-       href="https://2gis.kz"
-       target="_blank">
-       Картаны ашу
-    </a>
-
-</section>
-
-<section class="timer-section">
-
-    <div class="timer-overlay"></div>
-
-    <div class="timer-content">
-
-        <h2>Той салтанатына дейін</h2>
-
-        <div id="countdown" class="countdown">
-            00:00:00:00
+    <section class="date-section">
+        <h2>Тойымыз</h2>
+        <div class="date-card">
+            <div>ЖҰМА</div>
+            <div class="day">14</div>
+            <div>2026</div>
         </div>
+        <h3>19:00</h3>
+    </section>
 
-    </div>
+    <section class="location">
+        <h2>Мекен-жайымыз</h2>
+        <h3>Ақтөбе қаласы</h3>
+        <h1>«Қуаныш»</h1>
+        <h3>мейрамханасы</h3>
+        <a class="map-btn" href="https://2gis.kz" target="_blank">Картаны ашу</a>
+    </section>
 
-</section>
-
-<section class="owners">
-
-    <h2>Құрметпен, той иелері:</h2>
-
-    <h1>Қосым - Жанар</h1>
-
-</section>
-
-<section class="rsvp">
-
-    <h2>Сауалнама</h2>
-
-    <p>
-        Сіздің жауабыңыз тойды
-        ұйымдастыруға көмегін тигізеді
-    </p>
-
-    <form id="guestForm">
-
-        <label>Есіміңіз</label>
-
-        <input
-            type="text"
-            id="name"
-            required
-        >
-
-        <label>Тойға келе аласыз ба?</label>
-
-        <div class="radio-group">
-
-            <label>
-                <input
-                    type="radio"
-                    name="status"
-                    value="Келемін"
-                    checked
-                >
-                Келемін
-            </label>
-
-            <label>
-                <input
-                    type="radio"
-                    name="status"
-                    value="Жұбыммен/Жолдасыммен келемін"
-                >
-                Жұбыммен келемін
-            </label>
-
-            <label>
-                <input
-                    type="radio"
-                    name="status"
-                    value="Қатыса алмаймын"
-                >
-                Өкінішке орай қатыса алмаймын
-            </label>
-
+    <section class="timer-section">
+        <div class="timer-overlay"></div>
+        <div class="timer-content">
+            <h2>Той салтанатына дейін</h2>
+            <div id="countdown" class="countdown">00 : 00 : 00 : 00</div>
         </div>
+    </section>
 
-        <div id="spouseBlock" style="display:none;">
+    <section class="owners">
+        <h2>Құрметпен, той иелері:</h2>
+        <h1>Қосым - Жанар</h1>
+    </section>
 
-            <label>Жұбайыңыздың аты</label>
+    <section class="rsvp">
+        <h2>Сауалнама</h2>
+        <p>Сіздің жауабыңыз тойды ұйымдастыруға көмегін тигізеді</p>
 
-            <input
-                type="text"
-                id="spouse"
-            >
+        <form id="guestForm">
+            <label for="name">Есіміңіз</label>
+            <input type="text" id="name" required>
 
+            <label>Тойға келе аласыз ба?</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="status" id="statusYes" value="yes" checked>
+                    Келемін
+                </label>
+                <label>
+                    <input type="radio" name="status" id="statusSpouse" value="spouse">
+                    Жұбыммен келемін
+                </label>
+                <label>
+                    <input type="radio" name="status" id="statusNo" value="no">
+                    Өкінішке орай қатыса алмаймын
+                </label>
+            </div>
+
+            <div id="spouseBlock" style="display:none;">
+                <label for="spouse">Жұбайыңыздың аты</label>
+                <input type="text" id="spouse">
+            </div>
+
+            <button type="submit">ЖІБЕРУ</button>
+        </form>
+
+        <div id="message"></div>
+
+        <div class="guests-container" style="margin-top: 40px;">
+            <h3>Келетін қонақтар тізімі:</h3>
+            <ul id="guestList" style="list-style: none; padding: 0;"></ul>
         </div>
+    </section>
 
-        <button type="submit">
-            ЖІБЕРУ
-        </button>
-
-    </form>
-
-    <div id="message"></div>
-
-</section>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>

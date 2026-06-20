@@ -1,202 +1,148 @@
-const API_URL =
-"https://script.google.com/macros/s/AKfycby0o4wLxW6DlGlcP-2assMnnVJrrXr_ldS7QlatqBq2eLqS6XZ1SGtGg7lQSt08N2Ai/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbxryOpnGk2JPBga65sPg2gKQXlUC4pbDDgFv3KfzTHoRxM83bi2vx6NE9Qjn3TVYjc/exec";
 
-
-// музыка
-
-const music =
-document.getElementById("bgMusic");
-
-const musicBtn =
-document.getElementById("musicBtn");
+// === 1. МУЗЫКА ===
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
 
 musicBtn.addEventListener("click", () => {
-
-    if(music.paused){
-
+    if (music.paused) {
         music.play();
-
-        musicBtn.innerText =
-        "⏸ Музыканы тоқтату";
-
-    }else{
-
+        musicBtn.innerText = "⏸ Музыканы тоқтату";
+    } else {
         music.pause();
+        musicBtn.innerText = "▶ Музыканы қосу";
+    }
+});
 
-        musicBtn.innerText =
-        "▶ Музыканы қосу";
+// === 2. УПРАВЛЕНИЕ ПОЛЕМ СУПРУГА ===
+document.querySelectorAll('input[name="status"]').forEach(radio => {
+    radio.addEventListener("change", () => {
+        const checkedRadio = document.querySelector('input[name="status"]:checked');
+        const spouseBlock = document.getElementById("spouseBlock");
+        
+        // Показываем поле ввода только если выбрано "Жұбыммен келемін"
+        if (checkedRadio && checkedRadio.id === "statusSpouse") {
+            spouseBlock.style.display = "block";
+        } else {
+            spouseBlock.style.display = "none";
+            document.getElementById("spouse").value = ""; // Очищаем поле при скрытии
+        }
+    });
+});
 
+// === 3. ТАЙМЕР ОБРАТНОГО ОТСЧЕТА ===
+const weddingDate = new Date("2026-08-14T19:00:00");
+
+function updateTimer() {
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "00 : 00 : 00 : 00";
+        return;
     }
 
-});
+    const days = Math.floor(diff / 1000 / 60 / 60 / 24);
+    const hours = Math.floor((diff / 1000 / 60 / 60) % 24);
+    const minutes = Math.floor((diff / 1000 / 60) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
 
+    const fD = days < 10 ? '0' + days : days;
+    const fH = hours < 10 ? '0' + hours : hours;
+    const fM = minutes < 10 ? '0' + minutes : minutes;
+    const fS = seconds < 10 ? '0' + seconds : seconds;
 
-// супруг
-
-document
-.querySelectorAll('input[name="status"]')
-.forEach(radio => {
-
-radio.addEventListener("change", () => {
-
-const value =
-document.querySelector(
-'input[name="status"]:checked'
-).value;
-
-document.getElementById(
-"spouseBlock"
-).style.display =
-value === "Жұбыммен келемін"
-? "block"
-: "none";
-
-});
-
-});
-
-
-// таймер
-
-const weddingDate =
-new Date("2026-08-14T19:00:00");
-
-function updateTimer(){
-
-const now = new Date();
-
-const diff =
-weddingDate - now;
-
-const days =
-Math.floor(diff/1000/60/60/24);
-
-const hours =
-Math.floor(diff/1000/60/60)%24;
-
-const minutes =
-Math.floor(diff/1000/60)%60;
-
-const seconds =
-Math.floor(diff/1000)%60;
-
-document.getElementById(
-"countdown"
-).innerHTML =
-`${days} : ${hours} : ${minutes} : ${seconds}`;
-
+    document.getElementById("countdown").innerHTML = `${fD} : ${fH} : ${fM} : ${fS}`;
 }
 
-setInterval(updateTimer,1000);
-
+setInterval(updateTimer, 1000);
 updateTimer();
 
+// === 4. ОТПРАВКА ДАННЫХ В GOOGLE ТАБЛИЦУ (БЕЗ CORS ОШИБОК) ===
+document.getElementById("guestForm").addEventListener("submit", async e => {
+    e.preventDefault();
 
-// отправка
+    const name = document.getElementById("name").value.trim();
+    const spouseName = document.getElementById("spouse").value.trim();
+    const checkedValue = document.querySelector('input[name="status"]:checked').value;
 
-document
-.getElementById("guestForm")
-.addEventListener("submit", async e => {
+    // Подготовка данных под формат существующего Google Apps Script
+    let status = "no";
+    let hasSpouse = "no";
 
-e.preventDefault();
+    if (checkedValue === "yes") {
+        status = "yes";
+    } else if (checkedValue === "spouse") {
+        status = "yes";
+        hasSpouse = "yes";
+    }
 
-const name =
-document.getElementById("name").value;
+    const messageDiv = document.getElementById("message");
+    messageDiv.innerText = "Жіберілуде...";
+    messageDiv.style.color = "orange";
 
-const spouse =
-document.getElementById("spouse").value;
+    // Блокируем кнопку на время отправки
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
 
-const status =
-document.querySelector(
-'input[name="status"]:checked'
-).value;
+    try {
+        // Используем режим no-cors, чтобы избежать блокировок браузера
+        await fetch(API_URL, {
+            method: "POST",
+            mode: "no-cors", 
+            body: JSON.stringify({
+                name: name,
+                status: status,
+                hasSpouse: hasSpouse,
+                spouseName: hasSpouse === "yes" ? spouseName : ""
+            })
+        });
 
-try{
+        // В режиме no-cors ответ прочитать нельзя, сразу выводим успех
+        messageDiv.innerText = "Рақмет! Жауабыңыз сақталды ❤️";
+        messageDiv.style.color = "green";
 
-await fetch(API_URL,{
+        // Очистка формы
+        e.target.reset();
+        document.getElementById("spouseBlock").style.display = "none";
 
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-name,
-status,
-spouse
-})
-
+        // Обновляем список гостей через небольшую паузу
+        setTimeout(loadGuests, 1200);
+    } catch (err) {
+        console.error("Ошибка при отправке:", err);
+        messageDiv.innerText = "Қате пайда болды. Қайта байқап көріңіз.";
+        messageDiv.style.color = "red";
+    } finally {
+        if (submitBtn) submitBtn.disabled = false;
+    }
 });
 
-document.getElementById(
-"message"
-).innerText =
-"Рақмет! Жауабыңыз сақталды ❤️";
+// === 5. ПОЛУЧЕНИЕ И ВЫВОД СПИСКА ГОСТЕЙ ===
+function loadGuests() {
+    fetch(API_URL)
+        .then(res => res.json())
+        .then(data => {
+            const list = document.getElementById("guestList");
+            if (!list) return;
+            list.innerHTML = "";
 
+            data.forEach(g => {
+                if (g.status === "yes") {
+                    const li = document.createElement("li");
+                    li.style.margin = "8px 0";
+                    
+                    if (g.hasSpouse === "yes" && g.spouseName) {
+                        li.innerHTML = `✓ <strong>${g.name}</strong> + <strong>${g.spouseName}</strong>`;
+                    } else {
+                        li.innerHTML = `✓ <strong>${g.name}</strong>`;
+                    }
+                    
+                    list.appendChild(li);
+                }
+            });
+        })
+        .catch(err => console.error("Ошибка при получении списка гостей:", err));
+}
+
+// Запускаем загрузку списка при открытии сайта
 loadGuests();
-
-e.target.reset();
-
-}catch(err){
-
-document.getElementById(
-"message"
-).innerText =
-"Қате пайда болды";
-
-}
-
-});
-
-
-
-
-// список гостей
-
-async function loadGuests(){
-
-try{
-
-const res =
-await fetch(API_URL);
-
-const data =
-await res.json();
-
-const list =
-document.getElementById(
-"guestList"
-);
-
-list.innerHTML="";
-
-data.forEach(g=>{
-
-if(
-g.status === "Келемін" ||
-g.status === "Жұбыммен келемін"
-){
-
-const li =
-document.createElement("li");
-
-li.innerHTML =
-g.spouse
-? `✓ ${g.name} + ${g.spouse}`
-: `✓ ${g.name}`;
-
-list.appendChild(li);
-
-}
-
-});
-
-}catch(err){
-console.log(err);
-}
-
-}
-
-loadGuests();
-
