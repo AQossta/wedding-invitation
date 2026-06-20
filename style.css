@@ -232,7 +232,7 @@ color:var(--wine);
 }
 
 .timer-section{
-height:40vh;
+height:20vh;
 background:url("assets/IMG_1490.JPG") center/cover;
 position:relative;
 display:flex;
@@ -254,6 +254,7 @@ color:white;
 
 .timer-content h2{
 color:white;
+font-size: 30px;
 }
 
 .countdown {
