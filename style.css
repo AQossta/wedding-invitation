@@ -114,7 +114,7 @@ margin-bottom:30px;
 }
 
 h5{
-font-size:34px;
+font-size:25px;
 line-height:1.6;
 margin:30px auto;
 max-width:800px;
@@ -232,7 +232,7 @@ color:var(--wine);
 }
 
 .timer-section{
-height:70vh;
+height:40vh;
 background:url("assets/IMG_1490.JPG") center/cover;
 position:relative;
 display:flex;
@@ -259,7 +259,7 @@ color:white;
 .countdown {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
     flex-wrap: wrap;
 }
 
@@ -269,27 +269,27 @@ color:white;
 
 .time-box span {
     display: block;
-    font-size: 40px;
+    font-size: 20px;
     font-weight: 700;
     color: white;
 }
 
 .time-box p {
     margin-top: 8px;
-    font-size: 25px;
+    font-size: 20px;
     text-transform: uppercase;
     color: white;
     letter-spacing: 1px;
 }
 .owners h1{
 font-family: 'Great Vibes', cursive;
-font-size:60px;
+font-size:40px;
 color:var(--wine);
 }
 
 .owners h2{
 font-family: 'Great Vibes', cursive;
-font-size:60px;
+font-size:50px;
 color:var(--wine);
 }
 
